@@ -64,13 +64,32 @@ Edit the path mapping configuration:
 sudo nano /etc/asset-converter/path-mapping.conf
 ```
 
-Add your network shares (one per line, format: `//server/share|/mount/point`):
+Add your network shares using one of two formats:
+
+**Option 1: Drive Letter Mapping (recommended for users with mapped drives)**
+
+Format: `DRIVE:|//server/share|/mount/point`
+
+```
+T:|//fileserver/projects|/mnt/shares/projects
+P:|//nas/media|/mnt/shares/media
+```
+
+This allows users to enter paths like `T:\00005 Büroportfolio\00_Projekte\02735 WKB - Kita Beuren`
+
+**Option 2: UNC Path Mapping**
+
+Format: `//server/share|/mount/point`
 
 ```
 //fileserver/projects|/mnt/shares/projects
 //nas/media|/mnt/shares/media
 //backup-server/archives|/mnt/shares/archives
 ```
+
+This allows users to enter paths like `\\fileserver\projects\client-abc\images`
+
+**You can use both formats for the same share if needed.**
 
 ### 5. Mount the Shares
 
@@ -116,9 +135,29 @@ Replace `YOUR-SERVER-IP` with your server's IP address.
 
 ## Path Translation
 
-The server automatically translates Windows UNC paths to local mount points.
+The server automatically translates Windows paths to local mount points.
 
-### Example
+### Example 1: Drive Letter Mapping
+
+If you configure this mapping:
+
+```
+T:|//fileserver/projects|/mnt/shares/projects
+```
+
+Then when a user enters:
+
+```
+T:\00005 Büroportfolio\00_Projekte\02735 WKB - Kita Beuren
+```
+
+The server translates it to:
+
+```
+/mnt/shares/projects/00005 Büroportfolio/00_Projekte/02735 WKB - Kita Beuren
+```
+
+### Example 2: UNC Path Mapping
 
 If you configure this mapping:
 
@@ -142,9 +181,10 @@ The server translates it to:
 
 The following formats are automatically recognized:
 
-- Windows UNC with backslashes: `\\server\share\folder`
-- Windows UNC with forward slashes: `//server/share/folder`
-- Direct Linux paths: `/mnt/shares/folder`
+- **Windows mapped drives**: `T:\folder\subfolder`
+- **Windows UNC with backslashes**: `\\server\share\folder`
+- **Windows UNC with forward slashes**: `//server/share/folder`
+- **Direct Linux paths**: `/mnt/shares/folder`
 
 ## Service Management
 

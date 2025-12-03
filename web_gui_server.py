@@ -454,7 +454,7 @@ with gr.Blocks(
         <p>Konvertiere Bilder und PDFs in web-optimierte Formate mit WordPress-freundlichen Dateinamen.</p>
         {server_notice}
         > **💡 Remote-Zugriff:** Bei Zugriff über Netzwerk öffnet "Durchsuchen" den Dialog auf dem **Server**.
-        > Geben Sie stattdessen den Pfad **auf dem Server** direkt in die Textfelder ein.
+        > Geben Sie stattdessen den Pfad direkt ein: Windows-Laufwerksbuchstaben (z.B. `T:\\Ordner`) oder UNC-Pfade werden automatisch übersetzt.
         """
     )
 
@@ -463,10 +463,10 @@ with gr.Blocks(
             gr.Markdown("### Verzeichnisse")
 
             source_dir = gr.Textbox(
-                label="Quellordner (Server-Pfad oder Windows UNC)",
-                placeholder="z.B. /mnt/shares/projekte oder \\\\server\\share\\folder",
+                label="Quellordner (Server-Pfad, Windows UNC oder Laufwerksbuchstabe)",
+                placeholder="z.B. T:\\Ordner oder \\\\server\\share\\folder oder /mnt/shares/projekte",
                 value="",
-                info="Windows UNC-Pfade werden automatisch übersetzt"
+                info="Windows-Pfade (T:\\, \\\\server\\share) werden automatisch übersetzt"
             )
             source_btn = gr.Button("📁 Durchsuchen", size="sm")
 
@@ -474,7 +474,7 @@ with gr.Blocks(
                 label="Zielordner (optional)",
                 placeholder="Leer lassen für automatisch: <Quelle>/output-web",
                 value="",
-                info="Windows UNC-Pfade werden automatisch übersetzt"
+                info="Windows-Pfade werden automatisch übersetzt"
             )
             output_btn = gr.Button("📁 Durchsuchen", size="sm")
 
@@ -690,6 +690,7 @@ with gr.Blocks(
         """
         ---
         💡 **Server-Tipps:**
+        - Windows-Laufwerksbuchstaben (T:\\Ordner) werden automatisch übersetzt
         - Windows UNC-Pfade (\\\\\\\\server\\\\share) werden automatisch übersetzt
         - Linux-Pfade (/mnt/shares/...) funktionieren direkt
         - Durchsuchen-Button funktioniert nur lokal auf dem Server
@@ -713,11 +714,20 @@ if __name__ == "__main__":
     if PATH_TRANSLATION_AVAILABLE:
         translator = get_translator()
         mappings = translator.get_all_mappings()
+        drive_mappings = translator.get_drive_mappings()
 
-        if mappings:
+        if mappings or drive_mappings:
             print("📋 Active Path Mappings:")
-            for smb_path, local_path in mappings.items():
-                print(f"  {smb_path} -> {local_path}")
+
+            if drive_mappings:
+                print("  Drive Letters:")
+                for drive, local_path in drive_mappings.items():
+                    print(f"    {drive}: -> {local_path}")
+
+            if mappings:
+                print("  UNC Paths:")
+                for smb_path, local_path in mappings.items():
+                    print(f"    {smb_path} -> {local_path}")
         else:
             print("⚠️  No path mappings configured")
             print("   Edit /etc/asset-converter/path-mapping.conf to add mappings")

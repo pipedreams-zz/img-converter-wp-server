@@ -1,18 +1,26 @@
 # Path Mapping Configuration
-# Maps Windows network paths to local mount points
+# Maps Windows network paths and drive letters to local mount points
 #
-# Format: //server/share|/local/mount/point
+# Two formats are supported:
 #
-# Example mappings:
-# //fileserver/projects|/mnt/shares/projects
-# //nas/media|/mnt/shares/media
+# 1. UNC Path Mapping (2 fields):
+#    Format: //server/share|/local/mount/point
+#    Example: //fileserver/projects|/mnt/shares/projects
+#
+# 2. Drive Letter Mapping (3 fields):
+#    Format: DRIVE:|//server/share|/local/mount/point
+#    Example: T:|//fileserver/projects|/mnt/shares/projects
+#
+# Drive letter mappings allow users to enter paths like:
+#   T:\00005 Büroportfolio\00_Projekte\02735 WKB - Kita Beuren
+# Which will be translated to:
+#   /mnt/shares/projects/00005 Büroportfolio/00_Projekte/02735 WKB - Kita Beuren
+#
+# You can define both formats for the same share if users access it both ways.
+
+# Example configurations:
+# T:|//fileserver/projects|/mnt/shares/projects
+# P:|//nas/media|/mnt/shares/media
 # //backup-server/archives|/mnt/shares/archives
-#
-# The web UI will need to translate user-provided Windows paths to these mount points.
-# For example, if the user enters:
-#   \\fileserver\projects\client-abc\images
-# The server will access:
-#   /mnt/shares/projects/client-abc/images
 
 # Add your network shares below (one per line):
-# //your-server/share-name|/mnt/shares/share-name
