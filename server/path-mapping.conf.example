@@ -1,0 +1,18 @@
+# Path Mapping Configuration
+# Maps Windows network paths to local mount points
+#
+# Format: //server/share|/local/mount/point
+#
+# Example mappings:
+# //fileserver/projects|/mnt/shares/projects
+# //nas/media|/mnt/shares/media
+# //backup-server/archives|/mnt/shares/archives
+#
+# The web UI will need to translate user-provided Windows paths to these mount points.
+# For example, if the user enters:
+#   \\fileserver\projects\client-abc\images
+# The server will access:
+#   /mnt/shares/projects/client-abc/images
+
+# Add your network shares below (one per line):
+# //your-server/share-name|/mnt/shares/share-name
