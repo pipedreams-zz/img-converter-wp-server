@@ -10,8 +10,8 @@ This document describes the two deployment modes for the WordPress Asset Convert
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/YOUR-USERNAME/asset-converter-wordpress.git
-   cd asset-converter-wordpress
+   git clone https://github.com/pipedreams-zz/img-converter-wp-server.git
+   cd img-converter-wp-server
    ```
 
 2. Install dependencies:
@@ -81,8 +81,8 @@ Windows Network Share              Mounted Share
 
 ```bash
 # Clone and switch to server branch
-git clone https://github.com/YOUR-USERNAME/asset-converter-wordpress.git
-cd asset-converter-wordpress
+git clone https://github.com/pipedreams-zz/img-converter-wp-server.git
+cd img-converter-wp-server
 git checkout server-branch
 
 # Run installation
@@ -170,4 +170,5 @@ See [server/README.md](server/README.md) for:
 For deployment issues:
 - Workstation: See main [README.md](README.md)
 - Server: See [server/README.md](server/README.md)
-- GitHub Issues: https://github.com/YOUR-USERNAME/asset-converter-wordpress/issues
+- GitHub Issues: https://github.com/pipedreams-zz/img-converter-wp-server/issues
+

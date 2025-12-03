@@ -16,8 +16,8 @@ The server deployment includes:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/asset-converter-wordpress.git
-cd asset-converter-wordpress
+git clone https://github.com/pipedreams-zz/img-converter-wp-server.git
+cd img-converter-wp-server
 git checkout server-branch
 ```
 
@@ -343,7 +343,7 @@ pip install --upgrade -r requirements.txt -r requirements-gui.txt
 To update to the latest version:
 
 ```bash
-cd /path/to/asset-converter-wordpress
+cd /path/to/img-converter-wp-server
 git pull origin server-branch
 source venv/bin/activate
 pip install --upgrade -r requirements.txt -r requirements-gui.txt
@@ -373,7 +373,7 @@ sudo rm /usr/local/bin/mount-asset-converter-shares
 sudo umount -a -t cifs
 
 # Remove application (optional)
-rm -rf /path/to/asset-converter-wordpress
+rm -rf /path/to/img-converter-wp-server
 ```
 
 ## Advanced Configuration
@@ -430,7 +430,7 @@ server {
 ## Support
 
 For issues, questions, or contributions, please visit the GitHub repository:
-https://github.com/YOUR-USERNAME/asset-converter-wordpress
+https://github.com/pipedreams-zz/img-converter-wp-server
 
 ## License
 

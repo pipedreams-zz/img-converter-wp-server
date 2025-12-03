@@ -695,7 +695,7 @@ with gr.Blocks(
         - Durchsuchen-Button funktioniert nur lokal auf dem Server
         - WebP bietet die beste Balance zwischen Qualität und Größe
 
-        📚 [GitHub Repository](https://github.com/pipedreams-zz/asset-converter-wordpress)
+        📚 [GitHub Repository](https://github.com/pipedreams-zz/img-converter-wp-server)
         """
     )
 

@@ -680,7 +680,7 @@ with gr.Blocks(
         - WebP bietet die beste Balance zwischen Qualität und Größe
         - Transparenz-Option: Standard ist weißer Hintergrund (deaktivieren für Alpha-Kanal)
 
-        📚 [GitHub Repository](https://github.com/pipedreams-zz/asset-converter-wordpress)
+        📚 [GitHub Repository](https://github.com/pipedreams-zz/img-converter-wp-server)
         """
     )
 
